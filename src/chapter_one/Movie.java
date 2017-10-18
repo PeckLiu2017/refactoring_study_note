@@ -46,13 +46,9 @@ public class Movie {
 		return _price.getCharge(daysRented);
 	}
 	
+	// 计算顾客积分
 	public int getFrequentRenterPoints(int daysRented) {
-		// add bonus for a two day new release rental —— 租新片额外加积分
-		if ((getPriceCode() == Movie.NEW_RELEASE) && daysRented > 1) 
-			return 2;
-		else
-			// 正常情况积分加一
-			return 1;
+		return _price.getFrequentRenterPoints(daysRented);
 	}
 	
 }
