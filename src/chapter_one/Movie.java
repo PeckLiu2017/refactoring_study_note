@@ -8,7 +8,6 @@ public class Movie {
 	
 	private String _title;
 	private int _pricecode;
-	private Price _price;
 	
 	public Movie(String title,int pricecode) {
 		// TODO Auto-generated constructor stub
@@ -17,30 +16,18 @@ public class Movie {
 	}
 	
 	public int getPriceCode() {
-		return _price.getPriceCode();
+		return _pricecode;
 	}
 
 	public void setPriceCode(int arg) {
-		switch (arg) {
-		case REGULAR:
-			_price = new RegularPrice();	
-			break;
-		case CHILDRENS:
-			_price = new ChildrensPrice();	
-			break;
-		case NEW_RELEASE:
-			_price = new NewReleasePrice();	
-			break;
-		default:
-			throw new IllegalArgumentException("Incorrect Price Code");
-		}
+		_pricecode = arg;
 	}
 
 	public String getTitle() {
 		return _title;
 	}
 	
-	// 价格计算
+	// 根据 pricecode 和 daysRented 计算价格
 	public double getCharge(int daysRented) {
 		double result = 0;
 		switch (getPriceCode()) {
@@ -63,7 +50,6 @@ public class Movie {
 		return result;
 	}
 	
-	// 积分计算
 	public int getFrequentRenterPoints(int daysRented) {
 		// add bonus for a two day new release rental —— 租新片额外加积分
 		if ((_pricecode == Movie.NEW_RELEASE) && daysRented > 1) 
