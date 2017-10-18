@@ -22,24 +22,30 @@ public class Customer {
 	}
 	
 	public String statement() {
-		double totalAmount = 0;
 		int frequentRenterPoints = 0;
 		Enumeration rentals = _rentals.elements();
 		String result = "Rental Record for" + "\t" + getName() + "\n";
 		while (rentals.hasMoreElements()) {
-			double thisAmount = 0;
 			Rental each = (Rental)rentals.nextElement();
 			frequentRenterPoints += each.getFrequentRenterPoints();
-			result += "\t" + each.getMovie().getTitle() + "\t"
+			result += "\t" + each.getMovie().getTitle() + "\t"  //租的电影名字和价格
 					+ String.valueOf(each.getCharge()) + "\n";
-			totalAmount += each.getCharge();
 		}
 			// add footer lines
-			result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
+			result += "Amount owed is " + String.valueOf(getTotalCharge()) + "\n";
 			result += "You earned "
 					+ String.valueOf(frequentRenterPoints)
 					+ " frequent renter points";
 			return result;
 		}
 
+	private double getTotalCharge() {
+		double result = 0;
+		Enumeration rentals = _rentals.elements();
+		while (rentals.hasMoreElements()) {
+			Rental each = (Rental)rentals.nextElement();
+			result += each.getCharge();
+		}
+		return result;
+	}
 }
