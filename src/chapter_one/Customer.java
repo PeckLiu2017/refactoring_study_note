@@ -34,7 +34,7 @@ public class Customer {
 			// add footer lines
 			result += "Amount owed is " + String.valueOf(getTotalCharge()) + "\n";
 			result += "You earned "
-					+ String.valueOf(frequentRenterPoints)
+					+ String.valueOf(getTotalFrequentRenterPoints())
 					+ " frequent renter points";
 			return result;
 		}
@@ -45,6 +45,16 @@ public class Customer {
 		while (rentals.hasMoreElements()) {
 			Rental each = (Rental)rentals.nextElement();
 			result += each.getCharge();
+		}
+		return result;
+	}
+	
+	private int getTotalFrequentRenterPoints() {
+		int result = 0;
+		Enumeration rentals = _rentals.elements();
+		while (rentals.hasMoreElements()) {
+			Rental each = (Rental)rentals.nextElement();
+			result += each.getFrequentRenterPoints();
 		}
 		return result;
 	}
