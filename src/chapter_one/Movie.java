@@ -9,8 +9,10 @@ public class Movie {
 	private String _title;
 	private int _pricecode;
 	
-	public Movie() {
+	public Movie(String title,int pricecode) {
 		// TODO Auto-generated constructor stub
+		_title = title;
+		_pricecode = pricecode;
 	}
 	
 	public int getPriceCode() {
