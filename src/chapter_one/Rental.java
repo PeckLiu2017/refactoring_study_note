@@ -18,6 +18,7 @@ public class Rental {
 		return _movie;
 	}
 
+	//价格计算
 	public double getCharge() {
 		double result = 0;
 		switch (getMovie().getPriceCode()) {
@@ -38,5 +39,15 @@ public class Rental {
 			break;
 		}
 		return result;
+	}
+	
+	// add frequent renter points —— 常客积分计算
+	public int getFrequentRenterPoints() {
+		// add bonus for a two day new release rental —— 租新片额外加积分
+		if ((getMovie().getPriceCode() == Movie.NEW_RELEASE) && getDaysRented() > 1) 
+			return 2;
+		else
+			// 正常情况积分加一
+			return 1;
 	}
 }
