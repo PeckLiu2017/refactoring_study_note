@@ -18,6 +18,7 @@ public class JUnitTest extends TestCase{
 		Customer customer = new Customer("peck");
 		customer.addRental(rental);
 		String result = customer.statement();
+//		System.out.println(result);
 		assertEquals(result , "Rental Record for	peck\n" + 
 				"	New_Release_Movie	6.0\n" + 
 				"Amount owed is 6.0\n" + 
