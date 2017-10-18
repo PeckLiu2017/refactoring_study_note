@@ -51,5 +51,14 @@ public class Movie {
 		return result;
 	}
 	
+	public int getFrequentRenterPoints(int daysRented) {
+		// add bonus for a two day new release rental —— 租新片额外加积分
+		if ((_pricecode == Movie.NEW_RELEASE) && daysRented > 1) 
+			return 2;
+		else
+			// 正常情况积分加一
+			return 1;
+	}
+	
 }
 
