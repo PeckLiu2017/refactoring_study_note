@@ -21,6 +21,11 @@ public class Movie {
 		return _price.getPriceCode();
 	}
 
+	// 这里最终根据 pricecode 返回 _price 对象
+	// 不同 _price 对象对应不同的计算方法
+	// 今后再重构的情况下
+	// 只需要改 setPriceCode 
+	// 并增加 Price 新的继承类就可以了
 	public void setPriceCode(int arg) {
 		switch (arg) {
 		case REGULAR:
