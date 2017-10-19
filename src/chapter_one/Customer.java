@@ -21,6 +21,7 @@ public class Customer {
 		return _name;
 	}
 	
+	// 计算租电影的价格以及随之增加的顾客点数
 	public String statement() {
 		int frequentRenterPoints = 0;
 		Enumeration rentals = _rentals.elements();
@@ -38,7 +39,9 @@ public class Customer {
 					+ " frequent renter points";
 			return result;
 		}
-
+	// 为了消除临时变量，临时变量又用到了循环的数据
+	// 提取它出来的时候就不得不带着重复的循环代码
+	// 根据 pricecode 和 daysRented 计算价格
 	private double getTotalCharge() {
 		double result = 0;
 		Enumeration rentals = _rentals.elements();
@@ -49,6 +52,7 @@ public class Customer {
 		return result;
 	}
 	
+	// 计算顾客积分
 	private int getTotalFrequentRenterPoints() {
 		int result = 0;
 		Enumeration rentals = _rentals.elements();

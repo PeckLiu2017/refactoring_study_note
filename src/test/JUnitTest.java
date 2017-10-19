@@ -10,7 +10,12 @@ import chapter_one.Rental;
 import junit.framework.TestCase;
 
 public class JUnitTest extends TestCase{
-
+	
+	// 重构应该使代码的意图变得容易理解
+	// 像这里的测试代码的意思就是
+	// 一部新发行电影，价格码是1
+	// 租了2天
+	// 根据电影价格码，天数参数来计算租电影的价格以及随之增加的顾客积分
 	@Test
 	public void test_new_release_movie() {
 		Movie movie = new Movie("New_Release_Movie", 1);
@@ -24,6 +29,7 @@ public class JUnitTest extends TestCase{
 				"You earned 2 frequent renter points");
 	}
 	
+	@Test
 	public void test_children_movie() {
 		Movie movie = new Movie("Children_Movie", 2);
 		Rental rental = new Rental(movie, 2);
