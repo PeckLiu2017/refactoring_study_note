@@ -39,6 +39,7 @@ public class FileReaderTester extends TestCase {
 		}
 	}
 
+	// 测试第四个字符是'd'
 	@Test
 	public void testRead() throws IOException{
 		char ch = '&';
@@ -63,15 +64,31 @@ public class FileReaderTester extends TestCase {
 		assertEquals(-1, _input.read());
 	}
 	
-	public static TestSuite suite() {
-		TestSuite suite = new TestSuite();
-		suite.addTest(new FileReaderTester("testRead"));
-		suite.addTest(new FileReaderTester("testReadAtEnd"));
-		return suite;
+	// 测试最后一个字符是'6'
+	@Test
+	public void testReadLast() throws IOException{
+		char ch = '&';
+		// 这个循环返回读到的最后一个char
+		for (int i = 0; i < 227; i++) {
+			ch = (char)_input.read();
+		}
+		assertEquals('6', ch);	
 	}
 	
-	public static void main(String[] args) {
-		junit.textui.TestRunner.run(suite());
+	public void testReadBoundaries() throws IOException{
+		assertEquals("read first char", 'B', _input.read());
+		int ch;
+		for (int i = 1; i < 227; i++) {
+			ch = _input.read();
+		}
+//		assertEquals("read last char", '6', _input.read());
+		assertEquals("read at end", -1, _input.read());
 	}
+	
+	// 一次增加所有测试
+	public static void main(String[] args) {
+		junit.textui.TestRunner.run(new TestSuite(FileReaderTester.class));
+	}
+
 
 }
