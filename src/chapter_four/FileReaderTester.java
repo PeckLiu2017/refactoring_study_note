@@ -42,16 +42,31 @@ public class FileReaderTester extends TestCase {
 	@Test
 	public void testRead() throws IOException{
 		char ch = '&';
+		// 这个循环返回读到的最后一个char
 		for (int i = 0; i < 4; i++) {
-			System.out.println(ch);
 			ch = (char)_input.read();
 		}
-		assert ('d' == ch);
+		assertEquals('d', ch);
+	}
+	
+	// 测试文件一共有227个字符
+	// 当它被读完之后
+	// 如果程序没错
+	// _input.read()会返回-1
+	@Test
+	public void testReadAtEnd() throws IOException{
+		int ch = -1234;
+		// 这个循环返回读到的最后一个char
+		for (int i = 0; i < 227; i++) {
+			ch = _input.read();
+		}
+		assertEquals(-1, _input.read());
 	}
 	
 	public static TestSuite suite() {
 		TestSuite suite = new TestSuite();
 		suite.addTest(new FileReaderTester("testRead"));
+		suite.addTest(new FileReaderTester("testReadAtEnd"));
 		return suite;
 	}
 	
